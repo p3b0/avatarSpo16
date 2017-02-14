@@ -2,7 +2,7 @@
 	border-top: 0px solid #26a69a;
 	border-bottom: 0px solid #00695c;
 	border-radius: 50%;
-	margin: 0 5%;
+	margin: 0 auto;
 	display: block;
 	height: 250px;
 	width: 250px;
@@ -11,13 +11,13 @@
 	overflow: hidden;
 	box-shadow: 0 0 100px 10px #fff;
 	transition: all ease 0.3s;
+  cursor: pointer;
 }
 
-#citat-card:hover {
+#citat-card.show {
 	border-top: 4px solid #26a69a;
 	border-bottom: 4px solid #00695c;
 	border-radius: 5px;
-	/*height: 480px;*/
 	height: auto;
 	width: 350px;
 	box-shadow: 0 0 70px 10px #fff;
@@ -34,13 +34,24 @@
 }
 
 
-#citat-card:hover header img {
+#citat-card.show header img {
 	animation: profile_image 2000ms linear both;
 	animation-delay: 0.5s;
 }
 
 header {
 	text-align: center;
+  position: relative;
+}
+
+header #expand {
+   top: 155px;
+    position: absolute;
+    color: #fff;
+    font-size: 27px;
+    right: 100px;
+    width: 40px;
+    height: 40px;
 }
 
 header h1 {
@@ -57,7 +68,7 @@ header h1 {
 	border-bottom: 1px solid #ffffff;
 }
 
-#citat-card:hover header h1 {
+#citat-card.show header h1 {
 	margin-top: 0px;
 	outline: 0 solid #fff;
 	border-top: 0px solid #ffffff;
@@ -70,13 +81,14 @@ header h2 {
 	text-shadow: 1px 1px rgba(0,0,0,0.5);
 	font-size: 17px;
 	font-weight: normal;
-	margin: 10px 0;
+	line-height: 0px;
+	margin: 0;
 }
 
 
 #citat-card #citat {
 	text-align: center;
-	/*margin-top: 20px;*/
+	margin-top: 20px;
 	padding: 1px 20px 10px 20px !important;
 	transition: all linear 1.5s;
 	color: #fff;
@@ -85,7 +97,7 @@ header h2 {
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.42) 49%, rgba(0, 0, 0, 0.61) 100%);
 }
 
-#citat-card:hover #citat {
+#citat-card.show #citat {
 	opacity: 1;
 }
 
