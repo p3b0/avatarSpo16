@@ -82,13 +82,12 @@ header h2 {
 	font-size: 17px;
 	font-weight: normal;
 	line-height: 0px;
-	margin: 0;
+	margin: 10px 0;
 }
 
 
 #citat-card #citat {
 	text-align: center;
-	margin-top: 20px;
 	padding: 1px 20px 10px 20px !important;
 	transition: all linear 1.5s;
 	color: #fff;
