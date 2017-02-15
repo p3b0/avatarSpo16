@@ -1,3 +1,8 @@
+.hidden { display: none; }
+hr {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
 #citat-card {
 	border-top: 0px solid #26a69a;
 	border-bottom: 0px solid #00695c;
@@ -69,7 +74,6 @@ header h1 {
 }
 
 #citat-card.show header h1 {
-	margin-top: 0px;
 	outline: 0 solid #fff;
 	border-top: 0px solid #ffffff;
 	border-bottom: 1px solid #ffffff;
@@ -82,12 +86,12 @@ header h2 {
 	font-size: 17px;
 	font-weight: normal;
 	line-height: 0px;
-	margin: 10px 0;
 }
 
 
 #citat-card #citat {
 	text-align: center;
+	margin-top: 20px;
 	padding: 1px 20px 10px 20px !important;
 	transition: all linear 1.5s;
 	color: #fff;
@@ -98,6 +102,7 @@ header h2 {
 
 #citat-card.show #citat {
 	opacity: 1;
+  margin-top: 0;
 }
 
 /* Image animation */
@@ -182,29 +187,36 @@ header h2 {
   }
 }
 
+label {
+  margin-top: 20px ;
+}
 
+#citat-card #admin {
+  padding: 10px;
+  padding-top: 0;
+}
 
+#citat-card div#editItem, #citat-card #newItem {
+  display: none;
+}
 
+#citat-card input, #citat-card textarea {
+  display: block;
+  color: #000;
+}
 
+#citat-card input#image {
+  color: #fff;
+  margin-bottom: 20px;
+}
 
+textarea {
+  text-align: left !important;
+  margin-bottom: 20px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#citat-card #editItem, #citat-card #newItem {
+  text-align: left;
+  color: #fff;
+}
 
