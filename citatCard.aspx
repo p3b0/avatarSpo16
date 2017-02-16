@@ -26,35 +26,38 @@
 				<button id="deleteItem" class="btn btn-danger">Delete</button>
 			</div>
 			
-
-			<div id="editItem">
+            <div id="editItem">
 				<h4>Edit User</h4>
-				<label for="name">Name</label>
-				<input type="text" id="name" required>
-				<label for="lastname">Lastname</label>
-				<input type="text" id="lastname" required>
-				<label for="course">Course</label>
-				<input type="text" id="course" required>
-				<label for="citat">Citat</label>
-				<textarea name="citat" id="citat" cols="39" rows="5" required></textarea>
-				<button class="btn btn-success" id="update">Update</button>
+				<form name="editItem">
+					<label for="name">Name</label>
+					<input type="text" id="name" required>
+					<label for="lastname">Lastname</label>
+					<input type="text" id="lastname" required>
+					<label for="course">Course</label>
+					<input type="text" id="course" required>
+					<label for="citat">Citat</label>
+					<textarea name="citat" id="citat" cols="39" rows="5" required></textarea>
+					<button class="btn btn-success" id="update">Update</button>
+				</form>
 			</div>
 			<div id="newItem">
 				<h4>Create User</h4>
-				<span class="hidden userimage"></span>
-				<label for="name">Name</label>
-				<input type="text" id="name" required>
-				<label for="lastname">Lastname</label>
-				<input type="text" id="lastname" required>
-				<label for="course">Course</label>
-				<input type="text" id="course" required>
-				<label for="email">Email</label>
-				<input type="email" id="email" required>
-				<label for="citat">Citat</label>
-				<textarea name="citat" id="citat" cols="39" rows="5"></textarea>
-				<label for="image">Image</label>
-				<input type="file" id="image" name="image">
-				<button class="btn btn-success" id="create">Create</button>
+				<form name="newItem">
+					<span class="hidden userimage"></span>
+					<label for="name">Name</label>
+					<input type="text" id="name" required>
+					<label for="lastname">Lastname</label>
+					<input type="text" id="lastname" required>
+					<label for="course">Course</label>
+					<input type="text" id="course" required>
+					<label for="email">Email</label>
+					<input type="email" id="email" required>
+					<label for="citat">Citat</label>
+					<textarea name="citat" id="citat" cols="39" rows="5"></textarea>
+					<label for="image">Image</label>
+					<input type="file" id="image" name="image">
+					<button class="btn btn-success" id="create">Create</button>
+				</form>
 			</div>
 		</div>
 		
