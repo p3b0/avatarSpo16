@@ -31,9 +31,9 @@
             $('#citat-card #citat p').text(data[random].citat);
             $('#citat-card .hidden').text(data[random]._id);
             eID = data[random].eID;
-            console.log('This eID: ' + eID);
+            //console.log('This eID: ' + eID);
         }).fail(function () {
-            console.log('error');
+            //console.log('error');
         });
         /* END SHOW CARD */
 
@@ -57,7 +57,7 @@
                 location.reload();
 
             }).fail(function () {
-                console.log('DELETE error');
+                //console.log('DELETE error');
             });
         });
         // END DELETE
@@ -79,8 +79,6 @@
             $('#editItem input#course').val(classname);
             $('#editItem textarea#citat').val(citate);
 
-
-
             e.stopPropagation();
 
             $('#update').on('click', function (e) {
@@ -97,7 +95,7 @@
                     "klassnamn": newClassName,
                     "citat": newCitat
                 };
-                console.log(jsondata);
+                //console.log(jsondata);
                 var settings3 = {
                     "async": true,
                     "crossDomain": true,
@@ -115,7 +113,7 @@
                 $.ajax(settings3).done(function (response) {
                     location.reload();
                 }).fail(function (error) {
-                    console.log(error);
+                    //console.log(error);
                 });
             });
 
@@ -132,62 +130,92 @@
             e.stopPropagation();
 
             $('#create').on('click', function () {
-                var newItem = $('#newItem');
-                var firstname = newItem.find('#name').val();
-                var lastname = newItem.find('#lastname').val();
-                var email = newItem.find('#email').val();
-                var classname = newItem.find('#course').val();
-                var citate = newItem.find('#citat').val();
+                $.ajaxPrefilter(function (options) {
+                    if (!options.beforeSend) {
+                        options.beforeSend = function (xhr) {
+                            xhr.setRequestHeader('x-apikey', "589c6e2e64c380c04d1ed801");
+                        }
+                    }
+                });
+
+                var uploadImageSettings = {
+                    "async": true,
+                    "url": "https://employees-99bd.restdb.io/media/",
+                    "method": "POST",
+                    "contentType": false,
+                    "cache": false,
+                    "processData": false
+                }
 
                 var formData = new FormData();
                 var image = $('#image')[0].files;
 
-                var jsondata = {
-                    "fnamn": firstname,
-                    "enamn": lastname,
-                    "klassnamn": classname,
-                    "e-mail": email,
-                    "citat": citate
-                };
+                for (var i = 0; i < image.length; i++) {
+                    var file = image[i];
+                    var name = image[0].name;
+                    //console.log("One file ", image[i]);
 
-
-                var settings = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": "https://employees-99bd.restdb.io/rest/employees",
-                    "method": "POST",
-                    "headers": {
-                        "content-type": "application/json",
-                        "x-apikey": "589c6e2e64c380c04d1ed801",
-                        "cache-control": "no-cache"
-                    },
-                    "processData": false,
-                    "data": JSON.stringify(jsondata)
+                    if (!file.type.match('image.*')) {
+                        // continue
+                    }
+                    formData.append('myImage', file, file.name);
                 }
 
-                $.ajax(settings).done(function (response) {
-                    location.reload();
-                });
+                //console.log("POST ", formData);
 
-                // Setup for uploading images (See more: https://restdb.io/blog/570d28ae385af21e000000af)
-                // I get "illegal invocation" error in the console comming from jQuery.
+                uploadImageSettings.data = formData;
 
-                /*for(var i= 0; i < image.length; i++) {
-					var file = image[i];
-					var name = image[0].name;
-					formData.append('myImage', file, file.name);
-				}
-				
-				$.ajax({
-					"data": formData,
-					"url": "https://employees-99bd.restdb.io/media/",
-					"method": "POST",
-					"contentType": false,
-				}).done(function(response){
-					console.log(response);
-				});*/
+                // First ajax request
+                $.ajax(uploadImageSettings).done(function (response) {
+                    //console.log('image id when upload is done :' + response.ids);
+
+                    // Prepare the values for the user update (second ajax request)
+                    // At this time the image should already got an id (respone.ids)
+                    // which can be asociated with the new user 
+                    var newItem = $('#newItem');
+                    var firstname = newItem.find('#name').val();
+                    var lastname = newItem.find('#lastname').val();
+                    var email = newItem.find('#email').val();
+                    var classname = newItem.find('#course').val();
+                    var citate = newItem.find('#citat').val();
+
+                    var jsondata = {
+                        "fnamn": firstname,
+                        "enamn": lastname,
+                        "klassnamn": classname,
+                        "e-mail": email,
+                        "citat": citate,
+                        "bilder": response.ids // image id comming from the first request
+                    };
+
+
+                    var settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": "https://employees-99bd.restdb.io/rest/employees",
+                        "method": "POST",
+                        "headers": {
+                            "content-type": "application/json",
+                            "x-apikey": "589c6e2e64c380c04d1ed801",
+                            "cache-control": "no-cache"
+                        },
+                        "processData": false,
+                        "data": JSON.stringify(jsondata)
+                    }
+
+                    // second ajax request begin
+                    $.ajax(settings).done(function (response2) {
+                        location.reload();
+                        //console.log('user cereated!');
+                    }).fail(function (error) {
+                        //console.log(error);
+                    }); // end second ajax request
+
+                }).fail(function (error) {
+                    //console.log(error);
+                }); // end First ajax request
+
             });
-
         });
         // END NEW ITEM
 

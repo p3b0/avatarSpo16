@@ -41,6 +41,7 @@
 			</div>
 			<div id="newItem">
 				<h4>Create User</h4>
+				<span class="hidden userimage"></span>
 				<label for="name">Name</label>
 				<input type="text" id="name" required>
 				<label for="lastname">Lastname</label>
@@ -52,7 +53,7 @@
 				<label for="citat">Citat</label>
 				<textarea name="citat" id="citat" cols="39" rows="5"></textarea>
 				<label for="image">Image</label>
-				<input type="file" id="image" accept="image/jpeg, image/png">
+				<input type="file" id="image" name="image">
 				<button class="btn btn-success" id="create">Create</button>
 			</div>
 		</div>
